@@ -4,16 +4,25 @@ const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 const Constraint = Matter.Constraint
 
-var line1;
+
+var hourHand;
+var minuteHand;
+var secondHand;
 
 
 function setup() {
-  createCanvas(800,400);
+  createCanvas(1000,1000);
   engine = Engine.create();
   world = engine.world;
   //createSprite(400, 200, 50, 50);
 
-  line1 = new Clock(400, 200);
+
+
+  hourHand = new Clock(500,500);
+ 
+  minuteHand = new Clock(hourHand.x,hourHand.y);
+ 
+  secondHand = new Clock(hourHand.x,hourHand.y);
 
   Engine.run(engine);
 }
@@ -21,8 +30,11 @@ function setup() {
 function draw() {
   background(255,255,255);  
 
-  fill("red");
-  line1.display();
+  hourHand.clockHours();
+
+  minuteHand.clockMinutes();
+
+  secondHand.clockSeconds();
 
   drawSprites();
 }
